@@ -6,7 +6,7 @@ const Index = () => {
     <div className="min-h-screen bg-background flex flex-col">
       {/* Header - sticky on mobile */}
       <header className="w-full bg-card border-b border-border sticky top-0 z-10">
-        <div className="max-w-lg mx-auto px-3 py-3 sm:px-4 sm:py-4">
+        <div className="max-w-lg mx-auto px-3 py-3 sm:px-4 sm:py-4 flex justify-center">
           <img
             src={logo}
             alt="MyTaxNigeria - Simple • Accurate"
