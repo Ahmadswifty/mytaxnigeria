@@ -10,7 +10,7 @@ const Index = () => {
           <img
             src={logo}
             alt="MyTaxNigeria - Simple • Accurate"
-            className="h-10 sm:h-12 object-contain"
+            className="h-14 sm:h-16 md:h-20 object-contain"
           />
         </div>
       </header>
