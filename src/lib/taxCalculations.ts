@@ -6,6 +6,9 @@
  * - Company Income Tax (CIT) for CAC-registered businesses
  */
 
+// Minimum annual taxable income threshold
+const MIN_ANNUAL_TAXABLE_INCOME = 800000; // ₦800,000
+
 // PIT Progressive Monthly Tax Brackets (2026 Nigerian Tax Law)
 const PIT_BRACKETS = [
   { min: 0, max: 300000, rate: 0.07 },
@@ -96,7 +99,13 @@ export function calculatePIT(
   monthlyIncome: number,
   allowancesOrExpenses: number = 0
 ): TaxResult {
-  const taxableIncome = Math.max(0, monthlyIncome - allowancesOrExpenses);
+  const calculatedTaxable = Math.max(0, monthlyIncome - allowancesOrExpenses);
+  const annualTaxable = calculatedTaxable * 12;
+  
+  // Apply minimum annual taxable income of ₦800,000
+  const effectiveAnnualTaxable = Math.max(annualTaxable, MIN_ANNUAL_TAXABLE_INCOME);
+  const taxableIncome = effectiveAnnualTaxable / 12;
+  
   const monthlyTax = calculateMonthlyPIT(taxableIncome);
   const annualTax = monthlyTax * 12;
   const netIncome = taxableIncome - monthlyTax;
